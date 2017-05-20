@@ -1,0 +1,37 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: quizzer
+spec:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        k8s-app: quizzer
+    spec:
+      containers:
+      - image: quizzer
+        name: quizzer
+        imagePullPolicy: IfNotPresent
+        command: [ 'sh', '-c' ]
+        args: [
+          'bundle exec rake db:create &&
+           bundle exec rake db:migrate &&
+           bundle exec rake db:seed &&
+           bundle exec rake assets:precompile &&
+           bundle exec rails server'
+        ]
+        env:
+        - name: RAILS_ENV
+          value: production
+        - name: SECRET_KEY_BASE
+          value: 61f0c590841001a61025bf11fc1ba5697d229e3b2cdce23cb608282a3ccd1628c25a7f855b6cfeac4a2487d8eb4b10071d0b598c1a7e224a028747c2e69ad3d2
+        - name: DATABASE_URL
+          value: postgresql://postgres@postgres/quizzer_production
+        - name: RAILS_SERVE_STATIC_FILES
+          value: "true"
+        ports:
+        - containerPort: 3000
+          name: quizzer
