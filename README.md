@@ -1,4 +1,5 @@
 # Quizzer on Kubernetes
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4fd608e05ba54914bba2467296223799)](https://www.codacy.com/app/nmuzychuk/quizzer-kubernetes)
 
 ## Overview
 Kubernetes deployment files for [quizzer](https://github.com/nmuzychuk/quizzer) web app.
