@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Install docker, kubelet, kubectl, kubeadm
 apt-get update && apt-get install -y apt-transport-https
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
@@ -30,4 +32,4 @@ sleep 30
 
 # Verify
 NODE_PORT=$(kubectl describe svc quizzer | grep NodePort: | cut -d$'\t' -f4 | cut -d'/' -f1)
-curl localhost:${NODE_PORT} | grep "Play Quizzes"
+curl localhost:"${NODE_PORT}" | grep "Play Quizzes"
