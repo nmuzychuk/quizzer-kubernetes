@@ -7,11 +7,7 @@ Kubernetes deployment files for [quizzer](https://github.com/nmuzychuk/quizzer) 
 ## Test
 Integration test builds single-machine Kubernetes cluster.
 
-```console
-vagrant up
-vagrant ssh
-cd /vagrant
-
+```
 sudo bash test.sh
 ```
 
