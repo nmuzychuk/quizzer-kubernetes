@@ -27,9 +27,15 @@ spec:
         - name: RAILS_ENV
           value: production
         - name: SECRET_KEY_BASE
-          value: 61f0c590841001a61025bf11fc1ba5697d229e3b2cdce23cb608282a3ccd1628c25a7f855b6cfeac4a2487d8eb4b10071d0b598c1a7e224a028747c2e69ad3d2
+          valueFrom:
+            secretKeyRef:
+              name: quizzer
+              key: secret_key_base
         - name: DATABASE_URL
-          value: postgresql://postgres@postgres/quizzer_production
+          valueFrom:
+            secretKeyRef:
+              name: quizzer
+              key: database_url
         - name: RAILS_SERVE_STATIC_FILES
           value: "true"
         ports:
